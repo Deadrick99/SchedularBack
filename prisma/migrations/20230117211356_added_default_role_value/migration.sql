@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Employee" ALTER COLUMN "roles" SET DEFAULT ARRAY[6213]::INTEGER[];

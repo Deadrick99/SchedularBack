@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//DB model
+//employee //userrole = 6213
+model Employee {
+  id           String                 @id @default(uuid())
+  userName     String
+  password     String
+  firstName    String
+  lastName     String
+  roles        Int[]                  @default([6213])
+  refreshToken String                 @default("")
+  availability EmployeeAvailability[]
+  requestOff   RequestOff[]
+  shifts       EmployeeShift[]
+}
+
+model EmployeeAvailability {
+  id         String   @id @default(uuid())
+  day        String
+  startTime  DateTime
+  endTime    DateTime
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
+}
+
+model RequestOff {
+  id     String   @id @default(uuid())
+  status String
+  date   DateTime
+
+  Employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+}
+
+model EmployeeShift {
+  id          String    @id @default(uuid())
+  dayOfWeek   String
+  date        DateTime
+  Employee    Employee? @relation(fields: [employeeId], references: [id])
+  employeeId  String?
+  typeOfShift ShiftType @relation(fields: [shiftTypeId], references: [id])
+
+  ReleasedShift ReleasedShift[]
+  shiftTypeId   String
+}
+
+model ReleasedShift {
+  id              String        @id @default(uuid())
+  roles           Int[]
+  orginShift      EmployeeShift @relation(fields: [employeeShiftId], references: [id])
+  employeeShiftId String
+  typeOfShift     ShiftType     @relation(fields: [shiftTypeId], references: [id])
+  shiftTypeId     String
+}
+
+model ShiftType {
+  id        String   @id @default(uuid())
+  startTime DateTime
+  endTime   DateTime
+
+  EmployeeShift EmployeeShift[]
+  ReleasedShift ReleasedShift[]
+}
+
+model Day {
+  id           String   @id @default(uuid())
+  dayOfWeek    String
+  startTime    DateTime
+  endTime      DateTime
+  numEmployees Int
+}
