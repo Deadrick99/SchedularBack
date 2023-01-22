@@ -27,7 +27,7 @@ const handleNewUser = async (req:Request, res:Response) =>{
     //if no duplicat was found create user
     try {
         const hashPass = await bcrypt.hash(password,10)
-        const result = await prisma.employee.create({
+        await prisma.employee.create({
            data:{
             userName: userName,
             password:hashPass,

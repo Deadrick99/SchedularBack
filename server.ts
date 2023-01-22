@@ -21,8 +21,13 @@ app.use("/auth", require("./routes/auth"))
 app.use("/refresh", require("./routes/refresh"))
 app.use("/logout", require("./routes/logout"))
 app.use(verifyJWT);
-
+app.use("/release",require("./routes/api/releasedShifts"))
+app.use("/shiftType",require("./routes/api/shiftTypes"))
 app.use("/employees", require("./routes/api/employees"))
+app.use("/requestOff", require("./routes/api/requestOff"))
+app.use("/employeeAvail", require("./routes/api/employeeAvail"))
+app.use("/employeeShift", require("./routes/api/employeeShift"))
+app.use("/day", require("./routes/api/day"))
 //get all employees
 app.get('/', async(req:Request,res:Response)=>{
     const employees = await prisma.employee.findMany({

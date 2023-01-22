@@ -36,7 +36,7 @@ model EmployeeAvailability {
 
 model RequestOff {
   id     String   @id @default(uuid())
-  status String
+  status String   @default("")
   date   DateTime
 
   Employee   Employee? @relation(fields: [employeeId], references: [id])
@@ -57,20 +57,18 @@ model EmployeeShift {
 
 model ReleasedShift {
   id              String        @id @default(uuid())
+  status          String        @default("")
   roles           Int[]
   orginShift      EmployeeShift @relation(fields: [employeeShiftId], references: [id])
   employeeShiftId String
-  typeOfShift     ShiftType     @relation(fields: [shiftTypeId], references: [id])
-  shiftTypeId     String
 }
 
 model ShiftType {
-  id        String   @id @default(uuid())
-  startTime DateTime
-  endTime   DateTime
-
+  id            String          @id @default(uuid())
+  startTime     DateTime
+  endTime       DateTime
+  roles         Int[]
   EmployeeShift EmployeeShift[]
-  ReleasedShift ReleasedShift[]
 }
 
 model Day {
