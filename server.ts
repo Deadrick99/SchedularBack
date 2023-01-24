@@ -30,5 +30,6 @@ app.use("/employeeShift", require("./routes/api/employeeShift"))
 app.use("/day", require("./routes/api/day"))
 //get all employees
 
-app.listen(`0.0.0.0:$PORT`);
+const PORT = process.env.PORT || 3001
+app.listen(PORT);
 
