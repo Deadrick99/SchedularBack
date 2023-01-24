@@ -29,12 +29,6 @@ app.use("/employeeAvail", require("./routes/api/employeeAvail"))
 app.use("/employeeShift", require("./routes/api/employeeShift"))
 app.use("/day", require("./routes/api/day"))
 //get all employees
-app.get('/', async(req:Request,res:Response)=>{
-    const employees = await prisma.employee.findMany({
-        include:{availability:true}
-    })
 
-    res.json({employees});
-})
 app.listen(3001);
 

@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager),requestOffController.getAllRequestOffs)
+    .get(requestOffController.getAllRequestOffs)
     .delete(requestOffController.deleteRequestOff)
     .post(requestOffController.createRequestOff)
     .put(requestOffController.updateRequestOff)

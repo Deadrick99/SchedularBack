@@ -8,11 +8,11 @@ const getAllAvailRelease = async (req:Request, res:Response)=>{
         res.status(400).json({message:"Roles are required"})
     }
     
-    const releasedShifts = prisma.releasedShift.findMany({where:{roles:req.body.roles}})
+    const releasedShifts = await prisma.releasedShift.findMany({where:{roles:{has:req.body.role}}})
     if(!releasedShifts){
         res.status(204).json({message:"No shift is availible for this role!"})
     }
-    res.json({releasedShifts})
+    res.json(releasedShifts)
 }
 const createRelease = async (req:Request,res:Response) => {
     if (!req?.body?.roles || !req?.body?.employeeShiftId)
@@ -22,7 +22,7 @@ const createRelease = async (req:Request,res:Response) => {
     try {
         const shift =await prisma.releasedShift.create({data:{
         roles:req.body.roles,
-        orginShift:req.body.employeeShiftId,
+        employeeShiftId:req.body.employeeShiftId
        
     }})
      res.status(201).json({message:`Released shift ${shift.id} was created`})

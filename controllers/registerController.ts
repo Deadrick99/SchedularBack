@@ -10,9 +10,10 @@ const handleNewUser = async (req:Request, res:Response) =>{
     const password = req.body.password
     const firstName = req.body.firstName
     const lastName = req.body.lastName
+    const storeId = req.body.storeId
     //if no username or pass ret 400 error these are required
-    if(!userName || !password || !firstName || !lastName){
-        return res.status(400).json({message:"Username, password, firstname and lastname are required!"})
+    if(!userName || !password || !firstName || !lastName ||!storeId){
+        return res.status(400).json({message:"Username, password, firstname, lastname and store id are required!"})
     }
     
     //check for duplicates if found ret 409 username already exists
@@ -33,6 +34,7 @@ const handleNewUser = async (req:Request, res:Response) =>{
             password:hashPass,
             firstName:firstName,
             lastName:lastName,
+            storeId:storeId,
             refreshToken:""
            }
         })

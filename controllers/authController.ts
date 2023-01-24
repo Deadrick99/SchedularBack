@@ -27,7 +27,7 @@ const handleLogin = async (req:Request, res:Response) =>{
                 EmployeeInfo:{userName: foundUser.userName,roles:roles,firstName:foundUser.firstName,lastName:foundUser.lastName}
             },
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn:"30s"}
+            {expiresIn:"1d"}
         )
         
         const refreshToken =jwt.sign(

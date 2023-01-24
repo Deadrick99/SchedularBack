@@ -10,10 +10,10 @@ const getAllEmployeeShifts = async (req:Request,res:Response) =>{
     res.status(200).json(shifts)
 }
 const createEmployeeShift = async (req:Request,res:Response) =>{
-    if(!req?.body?.day || !req?.body?.employee || !req?.body?.shiftType || !req?.body?.data) 
+    if(!req?.body?.day || !req?.body?.employee || !req?.body?.shiftType || !req?.body?.date) 
     return res.status(400).json({message: "Day, employee id, shift type id, and date are required"})
     try {
-        const shift = await prisma.employeeShift.create({data:{dayOfWeek:req.body.day,employeeId:req.body.employee,date:req.body.data, shiftTypeId:req.body.shiftType}})
+        const shift = await prisma.employeeShift.create({data:{dayOfWeek:req.body.day,employeeId:req.body.employee,date:req.body.date, shiftTypeId:req.body.shiftType}})
         res.status(204).json(shift)
     } catch (error) {
         res.status(500).json({message:`Error: ${error}`})
@@ -36,7 +36,7 @@ const deleteEmployeeShift = async (req:Request,res:Response) =>{
     if(!req?.body?.id) 
     return res.status(400).json({message: "Id is required"})
     const shift = await prisma.employeeShift.findUnique({where:{id:req.body.id}})
-    if(!shift) return res.status(204).json({message: "No employee shift was found"})
+    if(!shift) return res.status(404).json({message: "No employee shift was found"})
     await prisma.employeeShift.delete({where:{id:req.body.id}})
     res.status(204)
 

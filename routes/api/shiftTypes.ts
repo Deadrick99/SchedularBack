@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager),shiftTypeController.getAllShiftTypes)
+    .get(shiftTypeController.getAllShiftTypes)
     .delete(shiftTypeController.deleteShiftType)
     .post(shiftTypeController.createShiftType)
     .put(shiftTypeController.updateShiftType)

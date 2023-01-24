@@ -8,7 +8,7 @@ const getAllShiftTypes = async (req:Request, res:Response)=>{
     res.json(shiftTypes)
 }
 const createShiftType = async (req:Request, res:Response)=>{
-    if(!req?.body?.roles || !req?.body?.lastName || !req?.body?.firstName)
+    if(!req?.body?.roles || !req?.body?.endTime || !req?.body?.startTime)
     {
         res.status(400).json({message:"Start time, endtime, and roles are required!"})
     }

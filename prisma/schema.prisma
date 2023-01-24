@@ -14,6 +14,7 @@ datasource db {
 //employee //userrole = 6213
 model Employee {
   id           String                 @id @default(uuid())
+  storeId      Int
   userName     String
   password     String
   firstName    String
@@ -28,8 +29,8 @@ model Employee {
 model EmployeeAvailability {
   id         String   @id @default(uuid())
   day        String
-  startTime  DateTime
-  endTime    DateTime
+  startTime  Int
+  endTime    Int
   Employee   Employee @relation(fields: [employeeId], references: [id])
   employeeId String
 }
@@ -37,7 +38,7 @@ model EmployeeAvailability {
 model RequestOff {
   id     String   @id @default(uuid())
   status String   @default("")
-  date   DateTime
+  date   DateTime @db.Date
 
   Employee   Employee? @relation(fields: [employeeId], references: [id])
   employeeId String?
@@ -46,7 +47,7 @@ model RequestOff {
 model EmployeeShift {
   id          String    @id @default(uuid())
   dayOfWeek   String
-  date        DateTime
+  date        DateTime  @db.Date
   Employee    Employee? @relation(fields: [employeeId], references: [id])
   employeeId  String?
   typeOfShift ShiftType @relation(fields: [shiftTypeId], references: [id])
@@ -58,23 +59,23 @@ model EmployeeShift {
 model ReleasedShift {
   id              String        @id @default(uuid())
   status          String        @default("")
-  roles           Int[]
+  roles           Int
   orginShift      EmployeeShift @relation(fields: [employeeShiftId], references: [id])
   employeeShiftId String
 }
 
 model ShiftType {
   id            String          @id @default(uuid())
-  startTime     DateTime
-  endTime       DateTime
-  roles         Int[]
+  startTime     Int
+  endTime       Int
+  roles         Int
   EmployeeShift EmployeeShift[]
 }
 
 model Day {
-  id           String   @id @default(uuid())
+  id           String @id @default(uuid())
   dayOfWeek    String
-  startTime    DateTime
-  endTime      DateTime
+  startTime    Int
+  endTime      Int
   numEmployees Int
 }

@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager),releaseController.getAllAvailRelease)
+    .get(releaseController.getAllAvailRelease)
     .delete(releaseController.deleteRelease)
     .post(releaseController.createRelease)
     .put(releaseController.updateRelease)

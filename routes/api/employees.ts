@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager),employeeController.getAllEmployees)
+    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager,ROLES_LIST.Employee),employeeController.getAllEmployees)
     .delete(employeeController.deleteEmployee)
 router
 .route("/:id")

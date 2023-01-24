@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager),dayController.getAllDays)
+    .get(dayController.getAllDays)
     .delete(dayController.deleteDay)
     .post(dayController.createDay)
     .put(dayController.updateDay)
