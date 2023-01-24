@@ -14,14 +14,14 @@ const handleLogout = async (req:Request, res:Response) => {
     const foundEmployee = await prisma.employee.findFirst(refreshToken)
     if(!foundEmployee){
         res.clearCookie("jwt", {httpOnly:true, sameSite:"none"
-        //, secure:true
+        , secure:true
     })
         return res.sendStatus(403)
     }
     foundEmployee.refreshToken = "";
     prisma.employee.update({where:{id:foundEmployee.id},data:{refreshToken:foundEmployee.refreshToken}})
     res.clearCookie("jwt", {httpOnly:true,sameSite:"none"
-        //,secure:true
+        ,secure:true
         })
     return res.status(204).json({message:"Logout successful!"})
 }
