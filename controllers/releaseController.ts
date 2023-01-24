@@ -7,7 +7,7 @@ const getAllAvailRelease = async (req:Request, res:Response)=>{
     if(!req?.body?.roles){
         res.status(400).json({message:"Roles are required"})
     }
-    
+       
     const releasedShifts = await prisma.releasedShift.findMany({where:{roles:req.body.roles}})
     if(!releasedShifts){
         res.status(204).json({message:"No shift is availible for this role!"})
