@@ -1,7 +1,7 @@
 import express from "express"
 const router = express.Router();
 const employeeController = require("../../controllers/employeesController");
-const ROLES_LIST = require("../../config/roles_list");
+const ROLES_LIST = require("../../Config/roles_list");
 const verifyRoles = require("../../middleware/verifyRoles");
 
 router
