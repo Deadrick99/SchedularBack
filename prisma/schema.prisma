@@ -24,6 +24,7 @@ model Employee {
   availability EmployeeAvailability[]
   requestOff   RequestOff[]
   shifts       EmployeeShift[]
+  Store        Store[]
 }
 
 model EmployeeAvailability {
@@ -78,4 +79,11 @@ model Day {
   startTime    Int
   endTime      Int
   numEmployees Int
+}
+
+model Store {
+  id         String   @id @default(uuid())
+  name       String
+  manager    Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
 }
