@@ -13,8 +13,8 @@ datasource db {
 //DB model
 //employee //userrole = 6213
 model Employee {
-  id           String                 @id @default(uuid())
-  storeId      Int
+  id String @id @default(uuid())
+
   userName     String
   password     String
   firstName    String
@@ -24,7 +24,8 @@ model Employee {
   availability EmployeeAvailability[]
   requestOff   RequestOff[]
   shifts       EmployeeShift[]
-  Store        Store[]
+  store        Store                  @relation(fields: [storeId], references: [id])
+  storeId      String
 }
 
 model EmployeeAvailability {
@@ -82,8 +83,8 @@ model Day {
 }
 
 model Store {
-  id         String   @id @default(uuid())
-  name       String
-  manager    Employee @relation(fields: [employeeId], references: [id])
-  employeeId String
+  id   String @id @default(uuid())
+  name String
+
+  Employee Employee[]
 }

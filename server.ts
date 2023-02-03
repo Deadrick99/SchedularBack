@@ -17,6 +17,7 @@ app.use(cors(corsOptions))
 app.use(cookieParser())
 
 app.use("/register", require("./routes/register"))
+app.use("/store", require("./routes/api/store"))
 app.use("/auth", require("./routes/auth"))
 app.use("/refresh", require("./routes/refresh"))
 app.use("/logout", require("./routes/logout"))
