@@ -31,8 +31,8 @@ model Employee {
 model EmployeeAvailability {
   id         String   @id @default(uuid())
   day        String
-  startTime  Int
-  endTime    Int
+  startTime  String
+  endTime    String
   Employee   Employee @relation(fields: [employeeId], references: [id])
   employeeId String
 }
@@ -68,8 +68,8 @@ model ReleasedShift {
 
 model ShiftType {
   id            String          @id @default(uuid())
-  startTime     Int
-  endTime       Int
+  startTime     String
+  endTime       String
   roles         Int
   EmployeeShift EmployeeShift[]
 }
@@ -77,8 +77,8 @@ model ShiftType {
 model Day {
   id           String @id @default(uuid())
   dayOfWeek    String
-  startTime    Int
-  endTime      Int
+  startTime    String
+  endTime      String
   numEmployees Int
 }
 
