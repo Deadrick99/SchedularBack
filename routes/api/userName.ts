@@ -9,4 +9,4 @@ router
     .get(userNameController.getAllStores)
     
 
-module.exports = router
+module.exports = router 
