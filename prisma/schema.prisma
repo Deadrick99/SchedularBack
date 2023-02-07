@@ -16,6 +16,7 @@ model Employee {
   id String @id @default(uuid())
 
   userName     String
+  numHours     Int                    @default(40)
   password     String
   firstName    String
   lastName     String
