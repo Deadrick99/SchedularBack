@@ -15,7 +15,7 @@ app.use(credentials)
 app.use(cors(corsOptions))
 //middleware for cookies
 app.use(cookieParser())
-
+app.use("/userName", require("./routes/api/userName"))
 app.use("/register", require("./routes/register"))
 app.use("/store", require("./routes/api/store"))
 app.use("/auth", require("./routes/auth"))
