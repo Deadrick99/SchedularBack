@@ -6,7 +6,7 @@ const verifyRoles = require("../../middleware/verifyRoles");
 
 router
     .route("/")
-    .get(userNameController.getAllStores)
+    .get(userNameController.checkUsername)
     
 
 module.exports = router 
