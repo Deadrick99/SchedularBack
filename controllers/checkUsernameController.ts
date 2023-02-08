@@ -4,9 +4,12 @@ require("dotenv")
 const prisma = new PrismaClient()
 
 const checkUsername = async(req:Request, res:Response) =>{
+    const userName = req.body.userName
+    if(!userName)
+    return res.status(400).json{message:"Username must be sent"}
  const duplicate = await prisma.employee.findFirst({
         where:{
-            userName:req.body.userName
+            userName:userName
         }
     })
     if(duplicate) {
