@@ -21,12 +21,12 @@ const deleteEmployee =  async (req:Request, res:Response) =>{
     res.json(result)
 }
 const getEmployee = async (req:Request, res:Response) =>{
-    if(!req?.params?.userName) {
-        return res.status(400).json({message:"UserName is required"});
+    if(!req?.params?.id) {
+        return res.status(400).json({message:"id is required"});
     }
-    const employee = await prisma.employee.findUnique({where:{id:req.params.userName}});
+    const employee = await prisma.employee.findUnique({where:{id:req.params.id}});
     if(!employee){
-        return res.status(400).json({message:`Could not find employee with username: ${req.params.userName}`})
+        return res.status(400).json({message:`Could not find employee with id: ${req.params.id}`})
     }
     res.json(employee) 
 }
