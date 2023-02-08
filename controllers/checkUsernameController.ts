@@ -12,7 +12,7 @@ const checkUsername = async(req:Request, res:Response) =>{
     if(duplicate) {
         return res.status(409).json({message : "User name already exists please choose a different one."})
     }
-    else return res.sendStatus(200);
+    else return res.status(200).json(req.body.userName);
 };
 
 module.exports = checkUsername
