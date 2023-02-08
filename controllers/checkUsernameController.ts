@@ -15,4 +15,4 @@ const checkUsername = async(req:Request, res:Response) =>{
     else return res.status(200).json(req.body.userName);
 };
 
-module.exports = checkUsername
+module.exports = {checkUsername}
