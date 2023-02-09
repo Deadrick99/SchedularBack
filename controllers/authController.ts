@@ -24,7 +24,7 @@ const handleLogin = async (req:Request, res:Response) =>{
         //create JWT's
         const accessToken =jwt.sign(
             {
-                EmployeeInfo:{userName: foundUser.userName,roles:roles,firstName:foundUser.firstName,lastName:foundUser.lastName}
+                EmployeeInfo:{userName: foundUser.userName,roles:roles,firstName:foundUser.firstName,lastName:foundUser.lastName, id:foundUser.id}
             },
             process.env.ACCESS_TOKEN_SECRET,
             {expiresIn:"1d"}
