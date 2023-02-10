@@ -37,7 +37,7 @@ const createEmployeeAvail = async (req:Request,res:Response) =>{
 }
 const getEmployeeAvail = async (req:Request,res:Response) =>{
     if (!req?.params?.id) return res.status(400).json({message:'Id is required!'})
-    const avail = await prisma.employeeAvailability.findUnique({where:{id: req.params.id}})
+    const avail = await prisma.employeeAvailability.findUnique({where:{id: req.body.params.id}})
     if(!avail) return res.status(204).json({message:"Could not find requested Availibilty"})
     res.status(200).json(avail);
 }
