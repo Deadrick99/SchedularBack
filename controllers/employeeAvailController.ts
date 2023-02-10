@@ -4,7 +4,7 @@ require("dotenv")
 const prisma = new PrismaClient()
 
 const getAllEmployeeAvail = async (req:Request,res:Response) =>{
-    const all = await prisma.employeeAvailability.findMany( {where: {employeeId: req.body.params.id}});
+    const all = await prisma.employeeAvailability.findMany();
     if(!all) return res.status(204).json({message:"Could not find any employees."})
     res.status(200).json(all)
 }
@@ -37,7 +37,7 @@ const createEmployeeAvail = async (req:Request,res:Response) =>{
 }
 const getEmployeeAvail = async (req:Request,res:Response) =>{
     if (!req?.params?.id) return res.status(400).json({message:'Id is required!'})
-    const avail = await prisma.employeeAvailability.findUnique({where:{id: req.body.params.id}})
+    const avail = await prisma.employeeAvailability.findMany({where:{employeeId: req.body.params.id}})
     if(!avail) return res.status(204).json({message:"Could not find requested Availibilty"})
     res.status(200).json(avail);
 }
