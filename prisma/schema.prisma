@@ -20,6 +20,7 @@ model Employee {
   password     String
   firstName    String
   lastName     String
+  availSet     Boolean                @default(false)
   roles        Int[]                  @default([6213])
   refreshToken String                 @default("")
   availability EmployeeAvailability[]
@@ -84,8 +85,9 @@ model Day {
 }
 
 model Store {
-  id   String @id @default(uuid())
-  name String
+  id      String  @id @default(uuid())
+  name    String
+  daysSet Boolean @default(false)
 
   Employee Employee[]
 }
