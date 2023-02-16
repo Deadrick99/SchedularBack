@@ -8,6 +8,7 @@ router
     .route("/")
     .get(verifyRoles(ROLES_LIST.ShiftLead,ROLES_LIST.Manager,ROLES_LIST.Employee),employeeController.getAllEmployees)
     .delete(employeeController.deleteEmployee)
+    .patch(employeeController.updateEmployee)
 router
 .route("/:id")
     .get(employeeController.getEmployee)
