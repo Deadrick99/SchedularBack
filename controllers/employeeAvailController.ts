@@ -35,7 +35,7 @@ const createEmployeeAvail = async (req:Request,res:Response) =>{
     }
     try {
         const avail = await prisma.employeeAvailability.create({data:{day: req.body.day, startTime:req.body.startTime,endTime: req.body.endTime, employeeId:req.body.employee}})
-        res.send(201).json(avail)
+        res.status(201).json(avail)
     } catch (error) {
         res.status(500).json({message:`Error: ${error}`})
     }
