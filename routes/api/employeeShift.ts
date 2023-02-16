@@ -9,7 +9,7 @@ router
     .get(employeeShiftController.getAllEmployeeShifts)
     .delete(employeeShiftController.deleteEmployeeShift)
     .post(employeeShiftController.createEmployeeShift)
-    .put(employeeShiftController.updateEmployeeShift)
+    .patch(employeeShiftController.updateEmployeeShift)
 router
 .route("/:id")
     .get(employeeShiftController.getEmployeeShift)

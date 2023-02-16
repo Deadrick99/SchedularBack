@@ -9,7 +9,7 @@ router
     .get(employeeAvailController.getAllEmployeeAvail)
     .delete(employeeAvailController.deleteEmployeeAvail)
     .post(employeeAvailController.createEmployeeAvail)
-    .put(employeeAvailController.updateEmployeeAvail)
+    .patch(employeeAvailController.updateEmployeeAvail)
 router
 .route("/:id")
     .get(employeeAvailController.getEmployeeAvail)

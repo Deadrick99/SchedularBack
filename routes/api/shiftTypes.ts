@@ -9,7 +9,7 @@ router
     .get(shiftTypeController.getAllShiftTypes)
     .delete(shiftTypeController.deleteShiftType)
     .post(shiftTypeController.createShiftType)
-    .put(shiftTypeController.updateShiftType)
+    .patch(shiftTypeController.updateShiftType)
 router
 .route("/:id")
     .get(shiftTypeController.getShiftType)

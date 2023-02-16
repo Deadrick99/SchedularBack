@@ -9,7 +9,7 @@ router
     .get(requestOffController.getAllRequestOffs)
     .delete(requestOffController.deleteRequestOff)
     .post(requestOffController.createRequestOff)
-    .put(requestOffController.updateRequestOff)
+    .patch(requestOffController.updateRequestOff)
 router
 .route("/:id")
     .get(requestOffController.getRequest)

@@ -9,7 +9,7 @@ router
     .get(releaseController.getAllAvailRelease)
     .delete(releaseController.deleteRelease)
     .post(releaseController.createRelease)
-    .put(releaseController.updateRelease)
+    .patch(releaseController.updateRelease)
 router
 .route("/:id")
     .get(releaseController.getAvailRelease)
