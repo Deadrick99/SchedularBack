@@ -6,7 +6,7 @@ const credentials = (req:Request, res:Response, next:NextFunction) => {
   if (allowedOrigins.includes(origin)) {
 
     res.header("Access-Control-Allow-Credentials", "true");
-   res.header("Access-Control-Allow-Origin", "https://capable-kulfi-d10dab.netlify.app/login")
+   res.header("Access-Control-Allow-Origin", "https://capable-kulfi-d10dab.netlify.app")
   }
   next();
 };
