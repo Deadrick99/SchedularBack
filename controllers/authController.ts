@@ -35,7 +35,7 @@ const handleLogin = async (req:Request, res:Response) =>{
                 userName: foundUser.userName
             },
             process.env.REFRESH_TOKEN_SECRET,
-            {expiresIn:"1d"}
+            {expiresIn:"10s"}
         )
         
         foundUser.refreshToken = refreshToken;
