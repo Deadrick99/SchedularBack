@@ -13,6 +13,7 @@ const cors = require("cors")
 app.use(express.json())
 app.use(credentials)
 app.use(cors(corsOptions))
+
 //middleware for cookies
 app.use(cookieParser())
 app.use("/userName", require("./routes/api/userName"))
