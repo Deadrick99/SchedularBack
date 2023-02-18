@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 const handleRefreshToken = async(req:Request,res:Response) => {
     const cookies = req.cookies
     if(!cookies?.jwt){
-         return res.sendStatus(401)
+         return res.send(401).json({message:"no cookies found"})
     }
     const refreshToken = cookies.jwt;
     const foundUser = await prisma.employee.findFirst({
