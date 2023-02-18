@@ -27,7 +27,7 @@ const handleLogin = async (req:Request, res:Response) =>{
                 EmployeeInfo:{userName: foundUser.userName,roles:roles,firstName:foundUser.firstName,lastName:foundUser.lastName, id:foundUser.id}
             },
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn:"1d"}
+            {expiresIn:"30s"}
         )
         
         const refreshToken =jwt.sign(
@@ -35,7 +35,7 @@ const handleLogin = async (req:Request, res:Response) =>{
                 userName: foundUser.userName
             },
             process.env.REFRESH_TOKEN_SECRET,
-            {expiresIn:"10s"}
+            {expiresIn:"1d"}
         )
         
         foundUser.refreshToken = refreshToken;
