@@ -13,7 +13,7 @@ const handleLogin = async (req:Request, res:Response) =>{
     
     //if no username or pass ret 400 error these are required
     if(!userName || !password ){
-        return res.status(400).json({message:"Username and password are required!"})
+        return res.sendStatus(400).json({message:"Username and password are required!"})
     }
     const foundUser = await prisma.employee.findFirst({where:{userName:req.body.userName}})
     if(!foundUser) return res.sendStatus(400);//could not find user 
@@ -58,7 +58,7 @@ const handleLogin = async (req:Request, res:Response) =>{
         res.sendStatus(200).json({roles,accessToken,id:foundUser.id})
     }
     else{
-        res.status(401).json({message:"Invalid Username or Password."})
+        res.sendStatus(401).json({message:"Invalid Username or Password."})
     }
 }
 module.exports = {handleLogin}
