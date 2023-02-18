@@ -16,7 +16,7 @@ const handleLogin = async (req:Request, res:Response) =>{
         return res.sendStatus(400).json({message:"Username and password are required!"})
     }
     const foundUser = await prisma.employee.findFirst({where:{userName:req.body.userName}})
-    if(!foundUser) return res.sendStatus(400);//could not find user 
+    if(!foundUser) return res.sendStatus(401);//could not find user 
     //see if password matches
     const match = await bcrypt.compare(password, foundUser.password)
     if(match ){
@@ -48,14 +48,14 @@ const handleLogin = async (req:Request, res:Response) =>{
        
         res.cookie("jwt",refreshToken,{
             httpOnly:true,
-            sameSite: "none",
-            secure:false,
+            sameSite: 'none',
+            secure:true,
             maxAge:24*60*60*1000,
             
             
         })
         
-        res.status(200).json({roles,accessToken,id:foundUser.id})
+        res.json({roles,accessToken,id:foundUser.id})
     }
     else{
         res.sendStatus(401).json({message:"Invalid Username or Password."})
