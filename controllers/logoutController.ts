@@ -7,7 +7,7 @@ const handleLogout = async (req:Request, res:Response) => {
     const cookies = req.cookies
     console.log(cookies)
     if(!cookies?.jwt){ 
-        return res.sendStatus(204);
+        return res.sendStatus(400);
     }
     const refreshToken = cookies.jwt;
 
