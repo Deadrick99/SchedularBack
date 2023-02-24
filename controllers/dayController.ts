@@ -28,11 +28,11 @@ const getAllDays = async(req:Request,res:Response) =>{
 }
 
 const createDay = async(req:Request,res:Response) =>{
-    if(!req?.body?.day||!req?.body?.startTime || !req?.body?.endTime || !req?.body?.numOfEmployees || !req?.body?.storeId) 
+    if(!req?.body?.day||!req?.body?.startTime || !req?.body?.endTime || !req?.body?.numEmployees || !req?.body?.storeId) 
     return res.status(400).json({message:"Day of week, start time, end Time, and number of employees is required!"})
     
     try {
-        const result = await prisma.day.create({data: {dayOfWeek:req.body.day,startTime:req.body.startTime,endTime:req.body.endTime,numEmployees:req.body.numOfEmployees, storeId:req.body.storeId}})
+        const result = await prisma.day.create({data: {dayOfWeek:req.body.day,startTime:req.body.startTime,endTime:req.body.endTime,numEmployees:req.body.numEmployees, storeId:req.body.storeId}})
         res.status(201).json(result)
     } catch (error) {
         res.status(500).json({message:`Error:${error}`})
