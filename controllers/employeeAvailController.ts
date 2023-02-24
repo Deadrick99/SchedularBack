@@ -28,11 +28,14 @@ const deleteEmployeeAvail = async (req:Request,res:Response) =>{
 const createEmployeeAvail = async (req:Request,res:Response) =>{
     if(!req?.body?.day ||!req?.body?.endTime||!req?.body?.startTime||!req?.body?.employee) 
     return res.status(400).json({message:"Day, start time, end time, and employee id are all required!"})
-    const duplicate = await prisma.employeeAvailability.findFirst({where: {employeeId:req.body.employee }})
-    if (duplicate?.day === req.body.day)
+    const duplicate = await prisma.employeeAvailability.findMany({where: {employeeId:req.body.employee }})
+    duplicate.forEach(dup => {
+        if (dup.day === req.body.day)
     {
         return res.status(400).json({message: "day already exists"})
     }
+    });
+    
     try {
         const avail = await prisma.employeeAvailability.create({data:{day: req.body.day, startTime:req.body.startTime,endTime: req.body.endTime, employeeId:req.body.employee}})
         res.status(201).json(avail)

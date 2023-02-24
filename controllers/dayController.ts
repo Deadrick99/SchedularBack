@@ -2,6 +2,24 @@ import { Request,Response } from "express";
 import { PrismaClient } from "@prisma/client";
 require("dotenv")
 const prisma = new PrismaClient()
+ const availibilty= new Map([
+    ["OPEN",-1],
+    ["9AM",0],
+    ["10AM",1],
+    ["11AM",2],
+    ["12PM",3],
+    ["1PM",4],
+    ["2PM",5],
+    ["3PM",6],
+    ["4PM",7],
+    ["5PM",8],
+    ["6PM",9],
+    ["7PM",10],
+    ["8PM",11],
+    ["CLOSE",12],
+    ]);
+//check and see if any conflicting times for the day
+
 
 const getAllDays = async(req:Request,res:Response) =>{
     const days = await prisma.day.findMany();
@@ -10,10 +28,11 @@ const getAllDays = async(req:Request,res:Response) =>{
 }
 
 const createDay = async(req:Request,res:Response) =>{
-    if(!req?.body?.day||!req?.body?.startTime || !req?.body?.endTime || !req?.body?.numOfEmployees) 
+    if(!req?.body?.day||!req?.body?.startTime || !req?.body?.endTime || !req?.body?.numOfEmployees || !req?.body?.storeId) 
     return res.status(400).json({message:"Day of week, start time, end Time, and number of employees is required!"})
+    
     try {
-        const result = await prisma.day.create({data: {dayOfWeek:req.body.day,startTime:req.body.startTime,endTime:req.body.endTime,numEmployees:req.body.numOfEmployees}})
+        const result = await prisma.day.create({data: {dayOfWeek:req.body.day,startTime:req.body.startTime,endTime:req.body.endTime,numEmployees:req.body.numOfEmployees, storeId:req.body.storeId}})
         res.status(201).json(result)
     } catch (error) {
         res.status(500).json({message:`Error:${error}`})

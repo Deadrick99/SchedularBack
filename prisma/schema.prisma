@@ -82,12 +82,15 @@ model Day {
   startTime    String
   endTime      String
   numEmployees Int
+
+  Store   Store?  @relation(fields: [storeId], references: [id])
+  storeId String?
 }
 
 model Store {
-  id      String  @id @default(uuid())
-  name    String
-  daysSet Boolean @default(false)
-
+  id       String     @id @default(uuid())
+  name     String
+  daysSet  Boolean    @default(false)
+  Day      Day[]
   Employee Employee[]
 }
