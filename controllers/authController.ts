@@ -55,7 +55,7 @@ const handleLogin = async (req:Request, res:Response) =>{
             
         })
         
-        res.json({roles,accessToken,id:foundUser.id})
+        res.json({roles,accessToken,id:foundUser.id, storeId:foundUser.storeId})
     }
     else{
         res.sendStatus(401).json({message:"Invalid Username or Password."})
