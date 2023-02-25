@@ -51,8 +51,8 @@ const updateDay = async(req:Request,res:Response) =>{
     res.status(201).json(result)
 }
 const deleteDay = async (req:Request,res:Response) =>{
-    if(!req?.body?.id) return res.status(400).json({message:"Id is required"})
-    const day = await prisma.day.findUnique({where:{id:req.body.id}})
+    if(!req?.params?.id) return res.status(400).json({message:"Id is required"})
+    const day = await prisma.day.findUnique({where:{id:req.params.id}})
     if(!day) return res.status(204).json({message:"No day found"})
     await prisma.day.delete({where:{id:day.id}})
     res.status(204)
