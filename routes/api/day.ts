@@ -9,7 +9,7 @@ router
     .get(dayController.getAllDays)
     .delete(dayController.deleteDay)
     .post(dayController.createDay)
-    .put(dayController.updateDay)
+    .patch(dayController.updateDay)
 router
 .route("/:id")
     .get(dayController.getDay)
