@@ -46,7 +46,7 @@ const updateDay = async(req:Request,res:Response) =>{
     if(req.body.day) day.dayOfWeek = req.body.day
     if(req.body.startTime) day.startTime = req.body.startTime
     if(req.body.endTime) day.endTime = req.body.endTime
-    if(req.body.numOfEmployees) day.numEmployees = req.body.numOfEmployees
+    if(req.body.numEmployees) day.numEmployees = req.body.numEmployees
     const result = await prisma.day.update({where:{id:day.id}, data:{dayOfWeek:day.dayOfWeek,startTime:day.startTime,endTime:day.endTime,numEmployees:day.numEmployees}})
     res.status(201).json(result)
 }
