@@ -7,11 +7,12 @@ const verifyRoles = require("../../middleware/verifyRoles");
 router
     .route("/")
     .get(dayController.getAllDays)
-    .delete(dayController.deleteDay)
+    
     .post(dayController.createDay)
     .patch(dayController.updateDay)
 router
 .route("/:id")
     .get(dayController.getDay)
+    .delete(dayController.deleteDay)
 
 module.exports = router
