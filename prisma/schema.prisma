@@ -69,10 +69,10 @@ model ReleasedShift {
 }
 
 model ShiftType {
-  id            String          @id @default(uuid())
-  startTime     String
-  endTime       String
-  roles         Int
+  id        String @id @default(uuid())
+  startTime String
+  endTime   String
+
   EmployeeShift EmployeeShift[]
 }
 

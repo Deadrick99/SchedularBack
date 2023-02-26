@@ -8,12 +8,12 @@ const getAllShiftTypes = async (req:Request, res:Response)=>{
     res.json(shiftTypes)
 }
 const createShiftType = async (req:Request, res:Response)=>{
-    if(!req?.body?.roles || !req?.body?.endTime || !req?.body?.startTime)
+    if(!req?.body?.endTime || !req?.body?.startTime)
     {
-        res.status(400).json({message:"Start time, endtime, and roles are required!"})
+        res.status(400).json({message:"Start timeand endtime are required!"})
     }
     try {
-        const result = await prisma.shiftType.create({data:{roles:req.body.roles, startTime: req.body.startTime, endTime:req.body.endTime}})
+        const result = await prisma.shiftType.create({data:{startTime: req.body.startTime, endTime:req.body.endTime}})
         res.status(201).json({message:"shift was created"})
     }
     catch(error)
