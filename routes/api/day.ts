@@ -13,6 +13,6 @@ router
 router
 .route("/:id")
     .get(dayController.getDay)
-    
+    .delete(dayController.deleteDay)
 
 module.exports = router
