@@ -74,6 +74,8 @@ model ShiftType {
   endTime   String
 
   EmployeeShift EmployeeShift[]
+  Store         Store?          @relation(fields: [storeId], references: [id])
+  storeId       String?
 }
 
 model Day {
@@ -88,9 +90,10 @@ model Day {
 }
 
 model Store {
-  id       String     @id @default(uuid())
-  name     String
-  daysSet  Boolean    @default(false)
-  Day      Day[]
-  Employee Employee[]
+  id        String      @id @default(uuid())
+  name      String
+  daysSet   Boolean     @default(false)
+  Day       Day[]
+  Employee  Employee[]
+  shiftType ShiftType[]
 }
