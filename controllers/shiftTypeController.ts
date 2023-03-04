@@ -33,10 +33,10 @@ const updateShiftType = async (req:Request, res:Response) => {
     res.json(result)
 }
 const deleteShiftType = async (req:Request, res:Response)=>{
-    if(!req?.body?.id){
+    if(!req?.params?.id){
         res.status(400).json({message:"Id is required!"})
     }
-    const shift = await prisma.shiftType.findFirst({where:{id: req.body.id}})
+    const shift = await prisma.shiftType.findFirst({where:{id: req.params.id}})
     if(!shift) return res.status(400).json({message:"Could not find shift"})
     const result = await prisma.shiftType.delete({where:{id:shift.id}})
     res.json(result);
