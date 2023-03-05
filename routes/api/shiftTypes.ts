@@ -7,11 +7,12 @@ const verifyRoles = require("../../middleware/verifyRoles");
 router
     .route("/")
     .get(shiftTypeController.getAllShiftTypes)
-    .delete(shiftTypeController.deleteShiftType)
+    
     .post(shiftTypeController.createShiftType)
     .patch(shiftTypeController.updateShiftType)
 router
 .route("/:id")
     .get(shiftTypeController.getShiftType)
+    .delete(shiftTypeController.deleteShiftType)
 
 module.exports = router
